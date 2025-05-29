@@ -42,11 +42,11 @@ export default function Projects() {
       demo: "#",
     },
     {
-      title: "E-Commerce Platform",
+      title: "Lumiere Mirror - Smart Mirror",
       description:
-        "Built a full-stack e-commerce platform with user authentication, product management, and payment processing.",
-      image: "/placeholder.svg?height=600&width=800",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
+        "Built a fully functioning smart mirror that displays day-to-day info and updates as well as plays music by connecting to Spotify.",
+      video: "/mirror.mp4?height=600&width=800",
+      tags: ["React", "Node.js", "MongoDB", "Javascript, Spotify API"],
       github: "#",
       demo: "#",
     },
@@ -91,12 +91,22 @@ export default function Projects() {
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    autoPlay
+                    loop
+                    muted
+                    className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
+                  />
+                ) : (
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
               </div>
 

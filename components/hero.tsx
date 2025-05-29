@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 5.0;
+    }
+  }, []);
 
   const handleScroll = () => {
     const aboutSection = document.getElementById("about")
@@ -20,6 +27,7 @@ export default function Hero() {
     <section className="relative h-screen w-full flex flex-col items-center justify-center">
        {/* Video Background */}
   <video
+    ref={videoRef}
     autoPlay
     loop
     muted
