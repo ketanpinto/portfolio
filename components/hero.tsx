@@ -12,7 +12,7 @@ export default function Hero() {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 5.0;
+      videoRef.current.playbackRate = 3.0;
     }
   }, []);
 
@@ -32,7 +32,7 @@ export default function Hero() {
     loop
     muted
     playsInline
-     poster="/fallbackimage.jpg"
+    poster="/fallbackimage.jpg"
     className="absolute top-0 left-0 w-full h-full object-cover z-0"
   >
     <source src="/videoplayback.mp4" type="video/mp4" />

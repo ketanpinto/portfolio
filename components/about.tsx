@@ -41,7 +41,7 @@ export default function About() {
         className="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center"
       >
         <motion.div variants={itemVariants} className="relative h-[400px] w-full rounded-lg overflow-hidden">
-          <Image src="/placeholder.svg?height=800&width=600" alt="Profile" fill className="object-cover rounded-lg" />
+          <Image src="/meehe.jpg?height=800&width=600" alt="Profile" fill className="object-cover rounded-lg" />
           <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/30 to-transparent" />
         </motion.div>
 

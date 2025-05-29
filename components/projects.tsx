@@ -31,6 +31,28 @@ export default function Projects() {
     },
   }
 
+  type Project =
+    | {
+        title: string;
+        description: string;
+        image: string;
+        tags: string[];
+        github: string;
+        demo: string;
+        website?: string;
+        video?: undefined;
+      }
+    | {
+        title: string;
+        description: string;
+        video: string;
+        tags: string[];
+        github: string;
+        demo: string;
+        image?: undefined;
+        website?: string;
+      };
+
   const projects = [
     {
       title: "Smart Home IoT System",
@@ -40,6 +62,7 @@ export default function Projects() {
       tags: ["IoT", "Python", "C++", "React Native"],
       github: "#",
       demo: "#",
+      website: undefined,
     },
     {
       title: "Lumiere Mirror - Smart Mirror",
@@ -47,19 +70,23 @@ export default function Projects() {
         "Built a fully functioning smart mirror that displays day-to-day info and updates as well as plays music by connecting to Spotify.",
       video: "/mirror.mp4?height=600&width=800",
       tags: ["React", "Node.js", "MongoDB", "Javascript, Spotify API"],
-      github: "#",
+      github: "https://github.com/ninjkaketan/MYRO/tree/main/smart_mirror_system",
       demo: "#",
+      website: undefined,
     },
     {
-      title: "Real-time Chat Application",
+      title: "Hardwired Solutions - Website",
       description:
-        "Created a real-time chat application with features like message encryption, file sharing, and user presence.",
-      image: "/placeholder.svg?height=600&width=800",
-      tags: ["Socket.io", "Express", "React", "Firebase"],
-      github: "#",
-      demo: "#",
-    },
+        "Developed and hosted a website for a company using Next.js and optimized TailwindCSS",
+        video: "/hardwiredweb.mp4?height=600&width=800",
+      tags: ["Lucide", "Next.js", "TailwindCSS", "EmailJS"],
+      github: "https://github.com/ninjkaketan/hardwiredsolutions",
+      demo: "https://hardwiredsolutions.in",
+      website: undefined,
+    }
+    
   ]
+  
 
   return (
     <section id="projects" className="py-20 bg-black relative">
@@ -100,12 +127,22 @@ export default function Projects() {
                     className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
                   />
                 ) : (
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                  <div>
+                    {project.website ? (
+                      <iframe
+                        src={project.website}
+                        title={project.title}
+                        className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
+                      />
+                    ) : (
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    )}
+                  </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
               </div>
