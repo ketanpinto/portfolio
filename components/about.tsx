@@ -51,7 +51,7 @@ export default function About() {
           </motion.h2>
 
           <motion.p variants={itemVariants} className="text-gray-300 text-lg">
-            I'm a Computer Systems Engineering student at Middlesex University Dubai, currently entering my second year.
+            I'm a Computer Systems Engineering student at Middlesex University Dubai, currently entering my final year.
             My passion lies in creating innovative solutions that bridge hardware and software.
           </motion.p>
 

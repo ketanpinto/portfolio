@@ -71,7 +71,7 @@ export default function Projects() {
       video: "/mirror.mp4?height=600&width=800",
       tags: ["React", "Node.js", "MongoDB", "Javascript, Spotify API"],
       github: "https://github.com/ninjkaketan/MYRO/tree/main/smart_mirror_system",
-      demo: "#",
+      demo: "https://drive.google.com/file/d/1ZBgeZYVZl3SpjvoPDI2-tfBxYDIayWyd/view?usp=sharing",
       website: undefined,
     },
     {
@@ -167,6 +167,7 @@ export default function Projects() {
                     variant="outline"
                     size="sm"
                     className="mt-8 border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
+                    onClick={() => window.open(project.github, "_blank")}
                   >
                     <Github className="h-4 w-4" />
                     Code
@@ -175,6 +176,7 @@ export default function Projects() {
                     variant="outline"
                     size="sm"
                     className="mt-8 border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
+                    onClick={() => window.open(project.demo, "_blank")}
                   >
                     <ExternalLink className="h-4 w-4" />
                     Demo

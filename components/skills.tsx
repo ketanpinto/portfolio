@@ -45,9 +45,9 @@ export default function Skills() {
     { name: "Programming", icon: Code2, color: "bg-pink-500/20", borderColor: "border-pink-500" },
     { name: "Databases", icon: Database, color: "bg-purple-500/20", borderColor: "border-purple-500" },
     { name: "Web Development", icon: Globe, color: "bg-cyan-500/20", borderColor: "border-cyan-500" },
-    { name: "Systems Architecture", icon: Server, color: "bg-pink-500/20", borderColor: "border-pink-500" },
-    { name: "Embedded Systems", icon: Cpu, color: "bg-purple-500/20", borderColor: "border-purple-500" },
-    { name: "Full Stack", icon: Layers, color: "bg-cyan-500/20", borderColor: "border-cyan-500" },
+    { name: "Github", icon: Server, color: "bg-pink-500/20", borderColor: "border-pink-500" },
+    { name: "Hardware Systems", icon: Cpu, color: "bg-purple-500/20", borderColor: "border-purple-500" },
+    { name: "Frontend", icon: Layers, color: "bg-cyan-500/20", borderColor: "border-cyan-500" },
   ]
 
   return (
@@ -96,9 +96,9 @@ export default function Skills() {
               <SkillSphere skill="C++" position={[-1.5, 0.5, 0]} color="#00599c" />
               <SkillSphere skill="React" position={[0.8, -0.8, 0]} color="#61dafb" />
               <SkillSphere skill="Node.js" position={[-0.8, -0.8, 0]} color="#339933" />
-              <SkillSphere skill="SQL" position={[0, -1.5, 0]} color="#f29111" />
+              <SkillSphere skill="C" position={[0, -1.5, 0]} color="#f29111" />
               <SkillSphere skill="Git" position={[0, 0, 1]} color="#f05032" />
-              <SkillSphere skill="Docker" position={[0, 0, -1]} color="#2496ed" />
+              <SkillSphere skill="Next.js" position={[0, 0, -1]} color="#2496ed" />
               <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
             </Canvas>
           </div>
