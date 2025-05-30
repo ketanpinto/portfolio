@@ -61,7 +61,7 @@ export default function Education() {
                 <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Network className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Software Engineer</h3>
+                    <h3 className="text-xl font-bold">Something</h3>
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
@@ -82,7 +82,7 @@ export default function Education() {
                 <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Workflow className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Web Developer Intern</h3>
+                    <h3 className="text-xl font-bold">example</h3>
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
