@@ -69,7 +69,7 @@ export default function Projects() {
       description:
         "Built a fully functioning smart mirror that displays day-to-day info and updates as well as plays music by connecting to Spotify.",
       video: "/mirror.mp4?height=600&width=800",
-      tags: ["React", "Node.js", "MongoDB", "Javascript, Spotify API"],
+      tags: ["React", "Node.js", "Javascript", "Spotify API"],
       github: "https://github.com/ninjkaketan/MYRO/tree/main/smart_mirror_system",
       demo: "https://drive.google.com/file/d/1ZBgeZYVZl3SpjvoPDI2-tfBxYDIayWyd/view?usp=sharing",
       website: undefined,
@@ -77,7 +77,7 @@ export default function Projects() {
     {
       title: "Hardwired Solutions - Website",
       description:
-        "Developed and hosted a website for a company using Next.js and optimized TailwindCSS",
+        "Developed and hosted a website for a company using Next.js and TailwindCSS. Made use of EmailJS to enable users to fill out their inquires.",
         video: "/hardwiredweb.mp4?height=600&width=800",
       tags: ["Lucide", "Next.js", "TailwindCSS", "EmailJS"],
       github: "https://github.com/ninjkaketan/hardwiredsolutions",

@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 
 export default function Hero() {
@@ -17,11 +18,15 @@ export default function Hero() {
   }, []);
 
   const handleScroll = () => {
-    const aboutSection = document.getElementById("about")
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" })
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
+
+  const handleGithub = () => {
+    window.open("https://github.com/ketanpinto", "_blank");
+  };
 
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center">
@@ -62,16 +67,33 @@ export default function Hero() {
           Computer Systems Engineering Student
         </motion.h2>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}>
+          <div className="flex flex-col space-y-4 justify-center items-center sm:flex-row sm:space-y-0 sm:space-x-4">
+           
           <Button
-            variant="outline"
-            size="lg"
-            className="mt-8 border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
-            onClick={handleScroll}
-          >
-            Explore My Work
-          </Button>
+      variant="outline"
+      size="lg"
+      className="mt-8 border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
+      onClick={handleScroll}
+    >
+      Explore My Work
+    </Button>
+          </div>
+          <div className="flex flex-col justify-center items-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 ">
+           
+            <Button
+              variant="outline"
+              size="lg"
+              className="mt-8 border-cyan-500 text-black hover:text-white hover:bg-cyan-500/20"
+              onClick={handleGithub}
+            >
+              Check out my GitHub
+            </Button>
+          </div>
         </motion.div>
       </motion.div>
+
+
+      
 
       <motion.div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
@@ -88,3 +110,5 @@ export default function Hero() {
     </section>
   )
 }
+
+

@@ -24,19 +24,15 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex space-x-4"
           >
-            <Link href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+            <Link href="https://github.com/ketanpinto" className="text-gray-400 hover:text-pink-500 transition-colors">
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+            <Link href="https://www.linkedin.com/in/ketan-pinto-68085a240/" className="text-gray-400 hover:text-pink-500 transition-colors">
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
-            </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+            <Link href="https://www.instagram.com/ketxn.pinto/" className="text-gray-400 hover:text-pink-500 transition-colors">
               <Instagram className="h-5 w-5" />
               <span className="sr-only">Instagram</span>
             </Link>

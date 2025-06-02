@@ -61,15 +61,15 @@ export default function Education() {
                 <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Network className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Something</h3>
+                    <h3 className="text-xl font-bold">Software Developer Intern</h3>
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>2024 - Present</span>
+                    <span>May 2025 - Present</span>
                   </div>
                   <div className="flex items-center text-gray-400 mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
-                    <span>Example Company</span>
+                    <span>FLR Spectron</span>
                   </div>
                   <p className="text-gray-300">
                     Developed and maintained web applications using React and Node.js.
@@ -82,18 +82,18 @@ export default function Education() {
                 <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
                   <div className="flex items-center mb-2">
                     <Workflow className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">example</h3>
+                    <h3 className="text-xl font-bold">Web Developer</h3>
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>2023</span>
+                    <span>Jan 2025 - April 2025</span>
                   </div>
                   <div className="flex items-center text-gray-400 mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
-                    <span>Another Example Company</span>
+                    <span>Hardwired Solutions</span>
                   </div>
                   <p className="text-gray-300">
-                    Assisted in the development of a new e-commerce platform.
+                  Designed, developed, and hosted a professional website, ensuring full functionality and deployment.
                   </p>
                 </div>
               </motion.div>
