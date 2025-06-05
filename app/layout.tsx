@@ -3,8 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Ketan Pinto',
-  description: 'Portfoio',
-  generator: 'Ketan Pinto',
+  description: 'Portfolio',
 }
 
 export default function RootLayout({

@@ -86,11 +86,11 @@ export default function Education() {
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>Jan 2025 - April 2025</span>
+                    <span>year - year</span>
                   </div>
                   <div className="flex items-center text-gray-400 mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
-                    <span>Hardwired Solutions</span>
+                    <span>Example company</span>
                   </div>
                   <p className="text-gray-300">
                   Designed, developed, and hosted a professional website, ensuring full functionality and deployment.
