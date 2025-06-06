@@ -72,7 +72,7 @@ export default function Education() {
                     <span>FLR Spectron</span>
                   </div>
                   <p className="text-gray-300">
-                    Developed and maintained web applications using React and Node.js.
+                    Developed and maintained web applications using Next.js, Three.js and TailwindCSS.
                   </p>
                 </div>
               </motion.div>
@@ -86,11 +86,11 @@ export default function Education() {
                   </div>
                   <div className="flex items-center text-gray-400 mb-1">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>year - year</span>
+                    <span>Jan 2025 - May 2025</span>
                   </div>
                   <div className="flex items-center text-gray-400 mb-4">
                     <MapPin className="h-4 w-4 mr-2" />
-                    <span>Example company</span>
+                    <span>Hardwired Solutions</span>
                   </div>
                   <p className="text-gray-300">
                   Designed, developed, and hosted a professional website, ensuring full functionality and deployment.

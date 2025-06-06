@@ -28,7 +28,7 @@ export default function Footer() {
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </Link>
-            <Link href="https://www.linkedin.com/in/ketan-pinto-68085a240/" className="text-gray-400 hover:text-pink-500 transition-colors">
+            <Link href="https://www.linkedin.com/in/ketanpinto/" className="text-gray-400 hover:text-pink-500 transition-colors">
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </Link>
