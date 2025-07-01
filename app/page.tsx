@@ -9,6 +9,9 @@ import AnimatedCursor from "@/components/animated-cursor"
 import SnakeGame from "@/components/snakegame"
 import GitHubStats from "@/components/githubstats"
 import Header from "@/components/header"
+import { Analytics } from "@vercel/analytics/next"
+import InstagramStats from "@/components/InstagramStats"
+import SocialSection from "@/components/SocialSection"
 
 export default function Home() {
   return (
@@ -19,7 +22,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
-      <GitHubStats />
+      <SocialSection />
       <Education />
       <Contact />
       <Footer />
