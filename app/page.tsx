@@ -25,6 +25,7 @@ export default function Home() {
       <SocialSection />
       <Education />
       <Contact />
+      <SnakeGame />
       <Footer />
     </main>
   )

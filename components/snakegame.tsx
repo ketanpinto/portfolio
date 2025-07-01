@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 
 const CANVAS_SIZE = 400;
@@ -17,6 +18,7 @@ export default function SnakeGame() {
   const [food, setFood] = useState<Position>(randomFood());
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   function randomFood(): Position {
     return {
@@ -25,21 +27,44 @@ export default function SnakeGame() {
     };
   }
 
+  // 🧠 Prevent page from scrolling with arrow keys when playing
   useEffect(() => {
+    const preventScroll = (e: KeyboardEvent) => {
+      if (
+        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    if (gameStarted) {
+      window.addEventListener("keydown", preventScroll, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener("keydown", preventScroll);
+    };
+  }, [gameStarted]);
+
+  useEffect(() => {
+    if (!gameStarted || isGameOver) return;
+
     const context = canvasRef.current?.getContext("2d");
     const interval = setInterval(() => {
-      if (!context || isGameOver) return;
+      if (!context) return;
 
       const newSnake = [...snake];
       const head = { ...newSnake[0] };
       head.x += direction.x;
       head.y += direction.y;
 
-      // Wall collision or self collision
+      // Wall or self collision
       if (
-        head.x < 0 || head.y < 0 ||
-        head.x >= CANVAS_SIZE / SCALE || head.y >= CANVAS_SIZE / SCALE ||
-        newSnake.some(segment => segment.x === head.x && segment.y === head.y)
+        head.x < 0 ||
+        head.y < 0 ||
+        head.x >= CANVAS_SIZE / SCALE ||
+        head.y >= CANVAS_SIZE / SCALE ||
+        newSnake.some((segment) => segment.x === head.x && segment.y === head.y)
       ) {
         setIsGameOver(true);
         return;
@@ -69,9 +94,11 @@ export default function SnakeGame() {
     }, 150);
 
     return () => clearInterval(interval);
-  }, [snake, direction, food, isGameOver]);
+  }, [snake, direction, food, isGameOver, gameStarted]);
 
   useEffect(() => {
+    if (!gameStarted) return;
+
     const handleKey = (e: KeyboardEvent) => {
       switch (e.key) {
         case "ArrowUp":
@@ -91,7 +118,7 @@ export default function SnakeGame() {
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [direction]);
+  }, [direction, gameStarted]);
 
   const restart = () => {
     setSnake(INITIAL_SNAKE);
@@ -100,24 +127,41 @@ export default function SnakeGame() {
     setIsGameOver(false);
   };
 
+  const startGame = () => {
+    setGameStarted(true);
+    setIsGameOver(false);
+    restart(); // reset everything in case of replay
+  };
+
   return (
     <div className="flex flex-col items-center gap-4 mt-8">
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_SIZE}
-        height={CANVAS_SIZE}
-        className="border border-gray-400 bg-black"
-      />
-      {isGameOver && (
-        <div className="text-center">
-          <p className="text-red-500 font-bold text-xl">Game Over</p>
-          <button
-            onClick={restart}
-            className="mt-2 px-4 py-2 bg-green-600 text-white rounded"
-          >
-            Restart
-          </button>
-        </div>
+      {!gameStarted ? (
+        <button
+          onClick={startGame}
+          className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        >
+          Wanna play a game?
+        </button>
+      ) : (
+        <>
+          <canvas
+            ref={canvasRef}
+            width={CANVAS_SIZE}
+            height={CANVAS_SIZE}
+            className="border border-gray-400 bg-black"
+          />
+          {isGameOver && (
+            <div className="text-center">
+              <p className="text-red-500 font-bold text-xl">Game Over</p>
+              <button
+                onClick={restart}
+                className="mt-2 px-4 py-2 bg-green-600 text-white rounded"
+              >
+                Restart
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
