@@ -28,6 +28,15 @@ export default function Hero() {
     window.open("https://github.com/ketanpinto", "_blank");
   };
 
+  const handleCVdownload = () => {
+    const link = document.createElement("a");
+    link.href = "/resume.pdf"; // make sure the file is in your public folder
+    link.download = "KetanPinto_Resume.pdf"; // optional custom filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center">
        {/* Video Background */}
@@ -67,28 +76,39 @@ export default function Hero() {
           Computer Systems Engineering Student
         </motion.h2>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9, duration: 0.8 }}>
-          <div className="flex flex-col space-y-4 justify-center items-center sm:flex-row sm:space-y-0 sm:space-x-4">
+        
+          <div className="flex flex-col space-y-4 justify-center items-center sm:flex-row sm:space-y-0 sm:space-x-4"/>
            
-          <Button
+          <div className="flex flex-col items-center justify-center mt-8">
+  <Button
+    variant="outline"
+    size="lg"
+    className="border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
+    onClick={handleScroll}
+  >
+    Explore My Work
+  </Button>
+
+  <div className="mt-8 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+    <Button
       variant="outline"
       size="lg"
-      className="mt-8 border-pink-500 text-black hover:text-white hover:bg-pink-500/20"
-      onClick={handleScroll}
+      className="border-cyan-500 text-black hover:text-white hover:bg-cyan-500/20"
+      onClick={handleGithub}
     >
-      Explore My Work
+      Check out my GitHub
     </Button>
-          </div>
-          <div className="flex flex-col justify-center items-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 ">
-           
-            <Button
-              variant="outline"
-              size="lg"
-              className="mt-8 border-cyan-500 text-black hover:text-white hover:bg-cyan-500/20"
-              onClick={handleGithub}
-            >
-              Check out my GitHub
-            </Button>
-          </div>
+
+    <Button
+      variant="outline"
+      size="lg"
+      className="border-green-500 text-black hover:text-white hover:bg-green-200/20"
+      onClick={handleCVdownload}
+    >
+      Download my CV
+    </Button>
+  </div>
+</div>
         </motion.div>
       </motion.div>
 
