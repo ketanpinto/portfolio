@@ -1,4 +1,3 @@
-
 // components/InfiniteMenu.tsx
 
 "use client"; // <-- CRUCIAL: Must be the very first line
@@ -78,7 +77,7 @@ void main() {
     float containerAspect = 1.0;
     
     float scale = max(imageAspect / containerAspect, 
-                     containerAspect / imageAspect);
+                      containerAspect / imageAspect);
     
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
     st = (st - 0.5) * scale + 0.5;
@@ -1285,7 +1284,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-screen">
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
@@ -1295,47 +1294,48 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
       {activeItem && (
         <>
           <h2
-  className={`
-    select-none
-    absolute
-    font-black
-    text-white
-    mix-blend-mode-difference // <-- Add this class
-    [font-size:4rem]
-    left-[1.6em]
-    top-1/2
-    transform
-    translate-x-[20%]
-    -translate-y-1/2
-    transition-all
-    ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-    ${
-      isMoving
-        ? "opacity-0 pointer-events-none duration-[100ms]"
-        : "opacity-100 pointer-events-auto duration-[500ms]"
-    }
-  `}
->
-  {activeItem.title}
-</h2>
+            className={`
+              select-none
+              absolute
+              font-black
+              text-white
+              mix-blend-difference
+              text-4xl md:text-6xl lg:text-7xl
+              left-6 lg:left-12
+              top-1/2
+              transform
+              -translate-y-1/2
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              ${
+                isMoving
+                  ? "opacity-0 pointer-events-none duration-[100ms]"
+                  : "opacity-100 pointer-events-auto duration-[500ms]"
+              }
+            `}
+          >
+            {activeItem.title}
+          </h2>
 
           <p
             className={`
-          select-none
-          absolute
-          max-w-[10ch]
-          text-[2.0rem]
-          text-white
-          top-1/2
-          right-[1%]
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? "opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2"
-              : "opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2"
-          }
-        `}
+              select-none
+              absolute
+              max-w-[15ch]
+              text-lg md:text-xl lg:text-3xl
+              text-white
+              top-1/2
+              right-6 lg:right-12
+              transform
+              -translate-y-1/2
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              ${
+                isMoving
+                  ? "opacity-0 pointer-events-none duration-[100ms]"
+                  : "opacity-100 pointer-events-auto duration-[500ms]"
+              }
+            `}
           >
             {activeItem.description}
           </p>
@@ -1343,26 +1343,26 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
           <div
             onClick={handleButtonClick}
             className={`
-          absolute
-          left-1/2
-          z-10
-          w-[60px]
-          h-[60px]
-          grid
-          place-items-center
-          bg-[#00ffff]
-          border-[5px]
-          border-black
-          rounded-full
-          cursor-pointer
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? "bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2"
-              : "bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2"
-          }
-        `}
+              absolute
+              left-1/2
+              z-10
+              w-[60px]
+              h-[60px]
+              grid
+              place-items-center
+              bg-[#00ffff]
+              border-[5px]
+              border-black
+              rounded-full
+              cursor-pointer
+              transition-all
+              ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+              ${
+                isMoving
+                  ? "bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2"
+                  : "bottom-8 lg:bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2"
+              }
+            `}
           >
             <p className="select-none relative text-[#060010] top-[2px] text-[26px]">
               &#x2197;
