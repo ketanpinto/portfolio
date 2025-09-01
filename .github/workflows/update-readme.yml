@@ -2,24 +2,35 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "0 10 * * *" # every day at 10:00 UTC
+    # Runs every day at 10:00 UTC (2:00 PM in Abu Dhabi)
+    - cron: "0 10 * * *" 
   workflow_dispatch:
 
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
+
+    # This is the required fix for the 403 error
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Update README
+      - name: Update activity log
         run: |
           date >> activity_log.txt
 
       - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "Daily activity update"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add activity_log.txt
+          # Check if there are changes to commit
+          if ! git diff --staged --quiet; then
+            git commit -m "Docs: Log daily activity"
+            git push
+          else
+            echo "No changes to commit."
+          fi
