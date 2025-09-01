@@ -1,0 +1,26 @@
+name: Update README daily
+
+on:
+  schedule:
+    - cron: "0 22 * * *"   # runs every day at 22:00 UTC = 2:00 AM Abu Dhabi time
+  workflow_dispatch:        # allows manual run from GitHub Actions tab
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Update README
+        run: |
+          sed -i "s|<!--LAST_UPDATED-->|$(date '+%Y-%m-%d %H:%M:%S UTC')|g" README.md
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Daily Update: $(date)"
+          git push
