@@ -1,24 +1,25 @@
-name: Update README
+name: Daily Commit
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Runs every day at midnight UTC
+    - cron: "0 10 * * *" # every day at 10:00 UTC
   workflow_dispatch:
 
 jobs:
-  update-readme:
+  auto-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run update script
-        run: python scripts/update_readme.py
+      - name: Update README
+        run: |
+          date >> activity_log.txt
 
       - name: Commit changes
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add .
-          git commit -m "Automated update"
+          git commit -m "Daily activity update"
           git push
