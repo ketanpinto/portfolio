@@ -2,7 +2,7 @@ name: Update README daily
 
 on:
   schedule:
-    - cron: "0 22 * * *"   # 22:00 UTC = 2:00 AM Abu Dhabi time
+    - cron: "30 22 * * *"   # 22:30 UTC = 2:30 AM Abu Dhabi time
   workflow_dispatch:
 
 jobs:
@@ -15,16 +15,23 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}  # allows push
 
-      - name: Update README timestamp
+      - name: Update README timestamp, commit & push
         run: |
-          # Abu Dhabi is UTC+4
+          # Get Abu Dhabi local time
           TIMESTAMP=$(date -u -d "+4 hours" '+%Y-%m-%d %H:%M:%S UTC+4')
-          sed -i "s|<!--LAST_UPDATED-->|$TIMESTAMP|g" README.md
-
-      - name: Commit and push changes
-        run: |
+          
+          # Replace placeholder with formatted timestamp
+          sed -i "s|<!--LAST_UPDATED-->|⏰ Last updated: $TIMESTAMP|g" README.md
+          
+          # Configure git
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add README.md
-          git diff --cached --quiet || git commit -m "Daily Update: $(date -u -d '+4 hours')"
-          git push
+          
+          # Commit and push if there are changes
+          if ! git diff --cached --quiet; then
+            git commit -m "Daily Update: $TIMESTAMP"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+          else
+            echo "No changes to commit"
+          fi
