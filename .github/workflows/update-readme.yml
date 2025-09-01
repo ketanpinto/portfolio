@@ -1,37 +1,38 @@
-name: Update README daily
-
 on:
-  schedule:
-    - cron: "30 22 * * *"   # 22:30 UTC = 2:30 AM Abu Dhabi time
-  workflow_dispatch:
-
-jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # allows push
-
-      - name: Update README timestamp, commit & push
-        run: |
-          # Get Abu Dhabi local time
-          TIMESTAMP=$(date -u -d "+4 hours" '+%Y-%m-%d %H:%M:%S UTC+4')
-          
-          # Replace placeholder with formatted timestamp
-          sed -i "s|<!--LAST_UPDATED-->|⏰ Last updated: $TIMESTAMP|g" README.md
-          
-          # Configure git
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add README.md
-          
-          # Commit and push if there are changes
-          if ! git diff --cached --quiet; then
-            git commit -m "Daily Update: $TIMESTAMP"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
-          else
-            echo "No changes to commit"
-          fi
+    schedule:
+      # Runs at 22:30 UTC, which is 2:30 AM Abu Dhabi Time
+      - cron: "30 22 * * *"
+    workflow_dispatch:
+  
+  jobs:
+    update-readme:
+      runs-on: ubuntu-latest
+      
+      # This grants the GITHUB_TOKEN write permissions to push code
+      permissions:
+        contents: write
+        
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+  
+        - name: Update README timestamp, commit & push
+          run: |
+            # Get Abu Dhabi local time (current time is 02:22 AM, so this will run in about 23 hours)
+            TIMESTAMP=$(date -u -d "+4 hours" +"%Y-%m-%d %H:%M:%S UTC+4")
+  
+            # Replace placeholder with formatted timestamp
+            sed -i "s|.*|Last updated: $TIMESTAMP|" README.md
+  
+            # Configure git for the github-actions bot
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md
+  
+            # Commit and push if there are changes
+            if ! git diff --cached --quiet; then
+              git commit -m "Docs: Update README with latest timestamp"
+              git push
+            else
+              echo "No changes to commit"
+            fi
