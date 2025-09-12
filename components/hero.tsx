@@ -46,7 +46,7 @@ export default function Hero() {
     loop
     muted
     playsInline
-    poster="/fallbackimage.jpg"
+    // poster="/fallbackimage.jpg"
     className="absolute top-0 left-0 w-full h-full object-cover z-0"
   >
     <source src="/videoplayback.mp4" type="video/mp4" />

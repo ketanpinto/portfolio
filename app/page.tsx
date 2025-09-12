@@ -20,7 +20,7 @@ export default function Home() {
       <AnimatedCursor />
       <Hero />
       <About />
-      <Skills />
+      {/* <Skills /> */}
       <Projects />
       <SocialSection />
       <Education />
