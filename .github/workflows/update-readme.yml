@@ -2,7 +2,11 @@ name: Daily Commit
 
 on:
   schedule:
+<<<<<<< HEAD
     # Runs every day at 23:00 UTC (3:00 AM in Abu Dhabi)
+=======
+    # Runs every day at 10:00 UTC (3:00 AM in Abu Dhabi)
+>>>>>>> 2ce92be4c0abd743103b2c797725347aa88a804e
     - cron: "0 23 * * *" 
   workflow_dispatch:
 
