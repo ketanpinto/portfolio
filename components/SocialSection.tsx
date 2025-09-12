@@ -21,10 +21,10 @@ export default function SocialSection() {
           My <span className="text-pink-500">Socials</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           <GitHubStats />
-          <InstagramStats />
-          <LinkedInStats />
+          {/* <InstagramStats />
+          <LinkedInStats /> */}
         </div>
       </div>
     </section>

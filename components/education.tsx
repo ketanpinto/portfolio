@@ -77,7 +77,7 @@ export default function Education() {
                 </div>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="mb-12 relative">
+              {/* <motion.div variants={itemVariants} className="mb-12 relative">
                 <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
                 <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
                   <div className="flex items-center mb-2">
@@ -96,7 +96,7 @@ export default function Education() {
                   Designed, developed, and hosted a professional website, ensuring full functionality and deployment.
                   </p>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </div>
         </div>
