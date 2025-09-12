@@ -2,9 +2,14 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Text, Float } from "@react-three/drei"
+import dynamic from "next/dynamic"
 import { Code2, Database, Server, Cpu, Globe, Layers } from "lucide-react"
+
+// Dynamically import R3F-related code (no SSR)
+const Canvas = dynamic(() => import("@react-three/fiber").then((mod) => mod.Canvas), { ssr: false })
+const OrbitControls = dynamic(() => import("@react-three/drei").then((mod) => mod.OrbitControls), { ssr: false })
+const Text = dynamic(() => import("@react-three/drei").then((mod) => mod.Text), { ssr: false })
+const Float = dynamic(() => import("@react-three/drei").then((mod) => mod.Float), { ssr: false })
 
 const SkillSphere = ({ skill, position, color }: { skill: string; position: [number, number, number]; color: string }) => {
   return (
@@ -22,23 +27,12 @@ export default function Skills() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   }
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
   }
 
   const skills = [
@@ -66,6 +60,7 @@ export default function Skills() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Left side skills grid */}
           <motion.div
             ref={ref}
             variants={containerVariants}
@@ -87,6 +82,7 @@ export default function Skills() {
             ))}
           </motion.div>
 
+          {/* Right side 3D canvas */}
           <div className="h-[400px] relative">
             <Canvas>
               <ambientLight intensity={0.5} />
