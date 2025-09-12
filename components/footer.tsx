@@ -46,7 +46,7 @@ export default function Footer() {
           className="mt-6 text-center"
         >
           <p className="text-sm text-gray-500 flex items-center justify-center">
-            Made with <Heart className="h-4 w-4 text-pink-500 mx-1" /> using Next.js and Three.js
+            Made with <Heart className="h-4 w-4 text-pink-500 mx-1" /> using Next.js.
           </p>
         </motion.div>
       </div>

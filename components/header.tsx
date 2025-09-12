@@ -71,11 +71,11 @@ export default function Header() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline" className=" text-black hover:bg-gray-50 hover:scale-105">
+          {/* <Button variant="outline" className=" text-black hover:bg-gray-50 hover:scale-105">
             Get Started
-          </Button>
+          </Button> */}
           <Button className="bg-black hover:bg-[#63D6E0] hover:text-gray-900 hover:scale-105">
-            Partner
+            Contact Me
           </Button>
         </div>
 
@@ -114,10 +114,10 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex flex-col space-y-2 mt-4">
-          <Button variant="outline" className="w-full">
+          {/* <Button variant="outline" className="w-full">
             Get Started
-          </Button>
-          <Button className="w-full bg-black hover:bg-gray-800">Partner</Button>
+          </Button> */}
+          {/* <Button className="w-full bg-black hover:bg-gray-800">Partner</Button> */}
         </div>
       </div>
     </header>
