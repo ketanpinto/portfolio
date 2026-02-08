@@ -2,193 +2,126 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { GraduationCap, Calendar, MapPin, CalendarHeart, Network, Workflow } from "lucide-react"
+import { GraduationCap, Calendar, MapPin, Briefcase, Award } from "lucide-react"
 
 export default function Education() {
-  const educationRef = useRef(null)
-  const isEducationInView = useInView(educationRef, { once: false, amount: 0.3 })
+  const containerRef = useRef(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
 
-  const experienceRef = useRef(null)
-  const isExperienceInView = useInView(experienceRef, { once: false, amount: 0.3 })
+  const experiences = [
+    {
+      title: "Software Developer Intern",
+      company: "FLR Spectron",
+      period: "May 2025 - Present",
+      location: "Dubai, UAE",
+      description: "Developing and maintaining high-performance web applications using Next.js, Three.js, and TailwindCSS.",
+      icon: Briefcase,
+    }
+  ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+  const education = [
+    {
+      degree: "BEng Computer Systems Engineering (Hons)",
+      institution: "Middlesex University Dubai",
+      period: "2023 - Present",
+      location: "Dubai, UAE",
+      description: "Focusing on hardware-software co-design, digital systems, and embedded architectures. Core coursework includes Networking, Real-time Systems, and AI.",
+      icon: GraduationCap,
     },
-  }
+    {
+      degree: "High School Specialization",
+      institution: "Don Bosco High School",
+      period: "2020 - 2022",
+      location: "Goa, India",
+      description: "Specialized in Computer Science, Math, and Physics. Active participant in state-level hackathons.",
+      icon: Award,
+    }
+  ]
 
-  const itemVariants = {
-    hidden: { x: -50, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
+  const TimelineItem = ({ item, index, type }: { item: any; index: number; type: 'exp' | 'edu' }) => (
+    <motion.div
+      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="relative pl-12 pb-12 last:pb-0"
+    >
+      {/* Connector */}
+      <div className="absolute left-[11px] top-0 bottom-0 w-[2px] bg-slate-800" />
+
+      {/* Icon Node */}
+      <div className="absolute left-0 top-0 w-6 h-6 rounded-full bg-slate-950 border-2 border-indigo-500 flex items-center justify-center z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)]">
+        <item.icon className="w-3 h-3 text-indigo-400" />
+      </div>
+
+      <div className="glass-card p-6 rounded-2xl hover:border-white/20 transition-all duration-300">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+          <h3 className="text-xl font-outfit font-bold text-white">
+            {type === 'exp' ? item.title : item.degree}
+          </h3>
+          <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 bg-white/5 rounded-full text-slate-400 border border-white/5">
+            {item.period}
+          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-4">
+          <div className="flex items-center gap-1.5">
+            <span className="text-indigo-400 font-semibold">{type === 'exp' ? item.company : item.institution}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5" />
+            <span>{item.location}</span>
+          </div>
+        </div>
+
+        <p className="text-slate-400 leading-relaxed text-sm">
+          {item.description}
+        </p>
+      </div>
+    </motion.div>
+  )
 
   return (
-    <div>
-      <section id="experience" className="py-20 bg-black relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-500/10 to-cyan-500/10 opacity-20" />
+    <section id="education" className="py-32 relative bg-mesh">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Experience Column */}
+          <div>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center">
+                <Briefcase className="w-6 h-6 text-indigo-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-outfit font-bold tracking-tighter">
+                Work <span className="text-indigo-500">Exp.</span>
+              </h2>
+            </div>
 
-        <div className="container mx-auto px-4">
-          <motion.h2
-            className="text-4xl font-bold text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.5 }}
-          >
-            My <span className="text-pink-500">Experience</span>
-          </motion.h2>
+            <div className="relative">
+              {experiences.map((exp, i) => (
+                <TimelineItem key={i} item={exp} index={i} type="exp" />
+              ))}
+            </div>
+          </div>
 
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              ref={experienceRef}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isExperienceInView ? "visible" : "hidden"}
-              className="relative border-l-2 border-pink-500 pl-8 ml-4"
-            >
-              <motion.div variants={itemVariants} className="mb-12 relative">
-                <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
-                <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
-                  <div className="flex items-center mb-2">
-                    <Network className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Software Developer Intern</h3>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-1">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>May 2025 - Present</span>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-4">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>FLR Spectron</span>
-                  </div>
-                  <p className="text-gray-300">
-                    Developed and maintained web applications using Next.js, Three.js and TailwindCSS.
-                  </p>
-                </div>
-              </motion.div>
+          {/* Education Column */}
+          <div>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="w-12 h-12 rounded-2xl bg-purple-600/10 border border-purple-500/20 flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-purple-400" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-outfit font-bold tracking-tighter">
+                Education
+              </h2>
+            </div>
 
-              {/* <motion.div variants={itemVariants} className="mb-12 relative">
-                <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
-                <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
-                  <div className="flex items-center mb-2">
-                    <Workflow className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Web Developer</h3>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-1">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>Jan 2025 - May 2025</span>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-4">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>Hardwired Solutions</span>
-                  </div>
-                  <p className="text-gray-300">
-                  Designed, developed, and hosted a professional website, ensuring full functionality and deployment.
-                  </p>
-                </div>
-              </motion.div> */}
-            </motion.div>
+            <div className="relative">
+              {education.map((edu, i) => (
+                <TimelineItem key={i} item={edu} index={i} type="edu" />
+              ))}
+            </div>
           </div>
         </div>
-      </section>
-
-      <section id="education" className="py-20 bg-black relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-500/10 to-cyan-500/10 opacity-20" />
-
-        <div className="container mx-auto px-4">
-          <motion.h2
-            className="text-4xl font-bold text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.5 }}
-          >
-            My <span className="text-pink-500">Education</span>
-          </motion.h2>
-
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              ref={educationRef}
-              variants={containerVariants}
-              initial="hidden"
-              animate={isEducationInView ? "visible" : "hidden"}
-              className="relative border-l-2 border-pink-500 pl-8 ml-4"
-            >
-              <motion.div variants={itemVariants} className="mb-12 relative">
-                <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
-                <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
-                  <div className="flex items-center mb-2">
-                    <GraduationCap className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Computer Systems Engineering (Hons)</h3>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-1">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>2023 - Present</span>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-4">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>Middlesex University Dubai</span>
-                  </div>
-                  <p className="text-gray-300">
-                    Currently in my second year, focusing on both hardware and software aspects of computer systems.
-                    Coursework includes programming, digital systems design, networking, and embedded systems.
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="mb-12 relative">
-                <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
-                <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
-                  <div className="flex items-center mb-2">
-                    <GraduationCap className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">High School</h3>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-1">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>2020 - 2022</span>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-4">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>Don Bosco High School, Panaji, Goa</span>
-                  </div>
-                  <p className="text-gray-300">
-                    Graduated specializing in Physics, Chemistry, Math, Computer Science. Participated in various tech
-                    competitions and hackathons.
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="relative">
-                <span className="absolute w-5 h-5 bg-pink-500 rounded-full -left-[2.7rem] top-0" />
-                <div className="p-6 bg-black/50 backdrop-blur-sm border border-gray-800 rounded-lg">
-                  <div className="flex items-center mb-2">
-                    <GraduationCap className="h-5 w-5 text-pink-500 mr-2" />
-                    <h3 className="text-xl font-bold">Online Certifications</h3>
-                  </div>
-                  <div className="flex items-center text-gray-400 mb-4">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>2021 - Present</span>
-                  </div>
-                  <p className="text-gray-300">
-                    Completed various certifications in web development, machine learning, and cloud computing from
-                    platforms like Coursera, Udemy, and freeCodeCamp.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }

@@ -43,29 +43,29 @@ export default function AnimatedCursor() {
 
   const variants = {
     default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      height: 32,
-      width: 32,
-      backgroundColor: "rgba(236, 72, 153, 0.3)",
-      mixBlendMode: "difference" as any,
+      x: mousePosition.x - 8,
+      y: mousePosition.y - 8,
+      height: 16,
+      width: 16,
+      backgroundColor: "rgba(99, 102, 241, 0.5)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
     },
     link: {
       x: mousePosition.x - 24,
       y: mousePosition.y - 24,
       height: 48,
       width: 48,
-      backgroundColor: "rgba(236, 72, 153, 0.6)",
-      mixBlendMode: "difference" as any,
+      backgroundColor: "rgba(99, 102, 241, 0.1)",
+      border: "1px solid rgba(99, 102, 241, 0.5)",
     },
   }
 
   return (
     <motion.div
-      className="fixed top-0 left-0 rounded-full pointer-events-none z-50 hidden md:block"
+      className="fixed top-0 left-0 rounded-full pointer-events-none z-[100] hidden md:block backdrop-blur-[2px]"
       variants={variants}
       animate={cursorVariant}
-      transition={{ type: "spring", stiffness: 500, damping: 28 }}
+      transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     />
   )
 }

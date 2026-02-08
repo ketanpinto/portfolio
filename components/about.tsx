@@ -6,75 +6,79 @@ import Image from "next/image"
 
 export default function About() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.3 })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section id="about" className="py-20 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-pink-500/10 to-cyan-500/10 opacity-20" />
+    <section id="about" className="py-32 relative overflow-hidden bg-mesh">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Image Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
+            <div className="relative h-[500px] w-full rounded-[3rem] overflow-hidden group shadow-2xl shadow-indigo-500/10">
+              <Image
+                src="/meehe.jpg"
+                alt="Ketan Pinto"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+            </div>
 
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center"
-      >
-        <motion.div variants={itemVariants} className="relative h-[400px] w-full rounded-lg overflow-hidden">
-          <Image src="/meehe.jpg?height=800&width=600" alt="Profile" fill className="object-cover rounded-lg" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/30 to-transparent" />
-        </motion.div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 glass-card rounded-3xl flex items-center justify-center p-4 text-center">
+              <span className="text-xl font-bold font-outfit text-indigo-400">Final Year</span>
+            </div>
+          </motion.div>
 
-        <div className="space-y-6">
-          <motion.h2 variants={itemVariants} className="text-4xl font-bold">
-            About <span className="text-pink-500">Me</span>
-          </motion.h2>
-
-          <motion.p variants={itemVariants} className="text-gray-300 text-lg">
-            I'm a Computer Systems Engineering student at Middlesex University Dubai, currently entering my final year.
-            My passion lies in creating innovative solutions that bridge hardware and software.
-          </motion.p>
-
-          <motion.p variants={itemVariants} className="text-gray-300 text-lg">
-            With a strong foundation in both programming and systems architecture, I enjoy tackling complex problems and
-            building efficient, elegant solutions. I'm particularly interested in embedded systems, IoT, and full-stack
-            development.
-          </motion.p>
-
-          <motion.div variants={itemVariants} className="pt-4">
-            <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-pink-500/20 border border-pink-500 rounded-full text-sm">
-                Problem Solver
+          {/* Content Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
+          >
+            <div>
+              <span className="text-indigo-500 font-semibold tracking-widest uppercase text-sm mb-4 block">
+                The Story
               </span>
-              <span className="px-4 py-2 bg-purple-500/20 border border-purple-500 rounded-full text-sm">
-                Tech Enthusiast
-              </span>
-              <span className="px-4 py-2 bg-cyan-500/20 border border-cyan-500 rounded-full text-sm">Fast Learner</span>
-              <span className="px-4 py-2 bg-pink-500/20 border border-pink-500 rounded-full text-sm">Team Player</span>
+              <h2 className="text-4xl md:text-6xl font-outfit font-bold tracking-tighter mb-6">
+                Bridging Hardware <br />
+                <span className="text-gradient-primary">& Software.</span>
+              </h2>
+              <div className="h-1 w-20 bg-indigo-600 rounded-full mb-8" />
+            </div>
+
+            <p className="text-xl text-slate-300 leading-relaxed font-inter">
+              I'm a <span className="text-white font-semibold">Computer Systems Engineering</span> student at Middlesex University Dubai.
+              My expertise lies at the intersection of digital architecture and innovative software development.
+            </p>
+
+            <p className="text-lg text-slate-400 leading-relaxed font-inter">
+              From building Smart Mirrors to complex IoT ecosystems, I focus on creating systems that are not just functional,
+              but seamlessly integrated into the user's life. I'm passionate about embedded systems, full-stack performance,
+              and clean, efficient code.
+            </p>
+
+            <div className="pt-6 flex flex-wrap gap-3">
+              {["Embedded Systems", "Full-Stack Dev", "IoT Architecture", "Problem Solving"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-5 py-2 glass border-white/5 text-sm font-medium rounded-2xl text-slate-200 hover:border-indigo-500/50 transition-colors"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

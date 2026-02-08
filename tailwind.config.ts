@@ -53,17 +53,22 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Professional Sleek Palette
+        slate: {
+          900: "#0f172a",
+          950: "#020617",
+        },
+        indigo: {
+          500: "#6366f1",
+          600: "#4f46e5",
+        },
+        violet: {
+          500: "#8b5cf6",
+          600: "#7c3aed",
+        },
         pink: {
           500: "#ec4899",
           600: "#db2777",
-        },
-        purple: {
-          500: "#a855f7",
-          600: "#9333ea",
-        },
-        cyan: {
-          500: "#06b6d4",
-          600: "#0891b2",
         },
       },
       borderRadius: {
@@ -80,10 +85,31 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-slow": {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "0.6" },
+        },
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-slow": "pulse-slow 8s ease-in-out infinite",
+        "gradient-x": "gradient-x 15s ease infinite",
       },
     },
   },
